@@ -2,16 +2,23 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev  
     container_name: springboot-app
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5555/demo
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://172.16.8.135:5555/demo
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DEVTOOLS_RESTART_ENABLED=true
+      - SPRING_DEVTOOLS_LIVERELOAD_ENABLED=true
     ports:
       - "8080:8080"
+    volumes:
+      - ./:/app  
+      - maven-repo:/root/.m2 
     networks:
       - backend
 
@@ -35,3 +42,4 @@ networks:
 
 volumes:
   postgres-data:
+  maven-repo: 

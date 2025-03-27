@@ -38,8 +38,8 @@ public abstract class BaseController<T extends BaseEntity<ID>, ID extends Serial
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<T> getById(@PathVariable ID id) {
-        return ResponseEntity.ok(service.getByIdActive(id));
+    public ResponseEntity<T> getById(@PathVariable ID id) { 
+        return ResponseEntity.ok(service.getByIdActive(id)); 
     }
 
     @PostMapping
