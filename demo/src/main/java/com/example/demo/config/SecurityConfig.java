@@ -18,10 +18,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // Cho phép truy cập tất cả API
                 .requestMatchers("/api/**").permitAll()
-                
-                // Đường dẫn Swagger UI mới - Cho phép TƯỜNG MINH
                 .requestMatchers("/swagger-ui.html").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/api-docs/**").permitAll()  
@@ -29,13 +26,9 @@ public class SecurityConfig {
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/swagger-resources/**").permitAll()
                 .requestMatchers("/webjars/**").permitAll()
-                
-                // Cho phép trang chủ
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/index.html").permitAll()
-                
-                // Yêu cầu xác thực cho các yêu cầu khác
-                .anyRequest().permitAll()  // ĐỂ TEST, TẠM THỜI CHO PHÉP TẤT CẢ
+                .anyRequest().permitAll() 
             )
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
